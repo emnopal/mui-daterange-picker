@@ -23,7 +23,42 @@ npm install mui-daterange-picker --save
 yarn add mui-daterange-picker
 ```
 
-## Basic example
+## Basic example (Picker: modal)
+```tsx
+import React from "react";
+import { DateRangePicker, DateRange } from "mui-daterange-picker";
+
+type Props = {}
+
+const App: React.FunctionComponent<Props> = props => {
+  const [open, setOpen] = React.useState<HTMLElement | null>(null);
+  const [dateRange, setDateRange] = React.useState<DateRange>({});
+
+  const close = () => setOpen(null);
+  const openPicker = useRef<HTMLElement>(null);
+
+  const anchorPositionTop = open?.getBoundingClientRect().top || 0;
+  const anchorPositionLeft = open?.getBoundingClientRect().left || 0;
+  const anchorPosition = { top: anchorPositionTop + 50, left: anchorPositionLeft };
+
+  return (
+    <DateRangePicker
+      open={Boolean(open)}
+      onClose={close}
+      onChange={setDateRange}
+      picker="modal"
+      modalProps={{
+        anchorReference: "anchorPosition",
+        anchorPosition: anchorPosition,
+      }}
+    />
+  );
+}
+
+export default App;
+```
+
+## Basic example (Picker: box)
 ```tsx
 import React from "react";
 import { DateRangePicker, DateRange } from "mui-daterange-picker";
@@ -44,8 +79,6 @@ const App: React.FunctionComponent<Props> = props => {
     />
   );
 }
-
-export default App;
 ```
 
 ## Types
