@@ -66,15 +66,19 @@ interface DefinedRange {
 
 Name | Type                      | Required | Default value | Description
 :--- |:--------------------------| :--- | :--- | :---
+`open` | `Boolean`     | _required_ | - | boolean to show / hide the DateRangePicker
+`picker` | `modal \| box \| undefined`     | _optional_ | `modal` | boolean to show / hide the DateRangePicker ` 
 `onChange` | `(DateRange) => void`     | _required_ | - | handler function for providing selected date range
-`toggle` | `() => void`              | _required_ | - | function to show / hide the DateRangePicker
+`toggle` | `() => void`              | modal: _optional_ <br/> box: _required_ | - | function to show / hide the DateRangePicker ` 
+`onClose` | `() => void`              | modal: _required_ <br/> box: _optional_ | - | function to handle closing the DateRangePicker `
 `initialDateRange` | `DateRange`               | _optional_ | `{}` | initially selected date range
-`minDate` | `Date` or `string`        | _optional_ | 10 years ago | min date allowed in range
-`maxDate` | `Date` or `string`        | _optional_ | 10 years from now | max date allowed in range
+`minDate` | `Date` or `string`        | _optional_ | 1 year  ago | min date allowed in range
+`maxDate` | `Date` or `string`        | _optional_ | now | max date allowed in range
 `definedRanges` | `DefinedRange[]`          | _optional_ | - | custom defined ranges to show in the list
 `closeOnClickOutside` | `boolean`                 | _optional_ | `true` | defines if DateRangePicker will be closed when clicking outside of it
 `wrapperClassName` | `object`                  | _optional_ | `undefined` | defines additional wrapper style classes
 `locale` | `Locale`  (from date-dns) | _optional_ | `undefined` | defines locale to use (from date-fns package)
+`modalProps` | `PopoverProps`  (from @mui/material) | _optional_ | `undefined` | defines additional props for the modal (from @mui/material)
 
 ## Made possible by
 
