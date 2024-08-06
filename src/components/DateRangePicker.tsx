@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   addMonths,
-  addYears,
   isAfter,
   isBefore,
   isSameDay,
@@ -10,6 +9,7 @@ import {
   max,
   min,
   subMonths,
+  subYears,
 } from "date-fns";
 import { DateRange, DefinedRange, NavigationAction } from "../types";
 import { getValidatedMonths, parseOptionalDate } from "../utils";
@@ -40,8 +40,8 @@ const DateRangePicker: React.FunctionComponent<DateRangePickerProps> = (props: D
     locale,
   } = props;
 
-  const minDateValid = parseOptionalDate(minDate, addYears(today, -10));
-  const maxDateValid = parseOptionalDate(maxDate, addYears(today, 10));
+  const minDateValid = parseOptionalDate(minDate, subYears(today, 1));
+  const maxDateValid = parseOptionalDate(maxDate, today);
   const [intialFirstMonth, initialSecondMonth] = getValidatedMonths(initialDateRange || {}, minDateValid, maxDateValid);
 
   const [dateRange, setDateRange] = React.useState<DateRange>({

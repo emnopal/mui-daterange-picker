@@ -4,7 +4,6 @@ import { Box, Popover, type PopoverProps, useTheme, useMediaQuery, Dialog } from
 import DateRangePicker from "./DateRangePicker";
 
 import { type DateRange, type DefinedRange } from "../types";
-import { subYears } from "date-fns";
 
 type RequiredToggle = { picker?: "modal"; toggle?: () => void } | { picker: "box"; toggle: () => void };
 type RequiredOnClose = { picker?: "modal"; onClose: () => void } | { picker: "box"; onClose?: () => void };
@@ -36,10 +35,6 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
   if (!picker) {
     picker = "modal";
   }
-
-  const today = new Date();
-  const minDate = subYears(today, 1);
-  const maxDate = today;
 
   const BoxDatePicker = () => {
     const handleToggle = () => {
@@ -74,7 +69,7 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
         )}
 
         <Box sx={{ position: "relative", zIndex: 1 }} className={wrapperClassName}>
-          <DateRangePicker {...props} minDate={minDate} maxDate={maxDate} />
+          <DateRangePicker {...props}/>
         </Box>
       </Box>
     );
@@ -84,14 +79,14 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
     if (isMobileView) {
       return (
         <Dialog open={open} onClose={onClose!}>
-          <DateRangePicker {...props} minDate={minDate} maxDate={maxDate} />
+          <DateRangePicker {...props}/>
         </Dialog>
       );
     }
 
     return (
       <Popover {...modalProps} open={open} onClose={onClose!}>
-        <DateRangePicker {...props} minDate={minDate} maxDate={maxDate} />
+        <DateRangePicker {...props}/>
       </Popover>
     );
   };
