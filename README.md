@@ -35,7 +35,6 @@ const App: React.FunctionComponent<Props> = props => {
   const [dateRange, setDateRange] = React.useState<DateRange>({});
 
   const close = () => setOpen(null);
-  const openPicker = useRef<HTMLElement>(null);
 
   const anchorPositionTop = open?.getBoundingClientRect().top || 0;
   const anchorPositionLeft = open?.getBoundingClientRect().left || 0;
@@ -45,7 +44,7 @@ const App: React.FunctionComponent<Props> = props => {
     <DateRangePicker
       open={Boolean(open)}
       onClose={close}
-      onChange={setDateRange}
+      onChange={range => setDateRange(range)}
       picker="modal"
       modalProps={{
         anchorReference: "anchorPosition",
@@ -73,12 +72,15 @@ const App: React.FunctionComponent<Props> = props => {
 
   return (
     <DateRangePicker
+      picker="box"
       open={open}
       toggle={toggle}
-      onChange={(range) => setDateRange(range)}
+      onChange={range => setDateRange(range)}
     />
   );
 }
+
+export default App;
 ```
 
 ## Types
